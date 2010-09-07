@@ -1,0 +1,15 @@
+diff -cr vmc.a/etc/udev/rules.d/45-vmc-huawei.rules vmc.b/etc/udev/rules.d/45-vmc-huawei.rules
+*** vmc.a/etc/udev/rules.d/45-vmc-huawei.rules	2010-02-17 18:00:02.000000000 +0800
+--- vmc.b/etc/udev/rules.d/45-vmc-huawei.rules	2010-03-12 14:49:05.503112008 +0800
+***************
+*** 24,29 ****
+--- 24,33 ----
+  
+  # Devices that change PID when flipped use separate scripts to flip & load driver
+  ACTION=="add", SUBSYSTEM=="usb", \
++    ATTR{idVendor}=="12d1", ATTR{idProduct}=="1446", \
++    RUN:="/usr/sbin/vmc-huawei-flip.sh %s{idVendor} %s{idProduct}"
++ 
++ ACTION=="add", SUBSYSTEM=="usb", \
+     ATTR{idVendor}=="12d1", ATTR{idProduct}=="1520", \
+     RUN:="/usr/sbin/vmc-huawei-flip.sh %s{idVendor} %s{idProduct}"
